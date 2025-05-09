@@ -30,7 +30,7 @@ const Hero = () => {
         <div className="lg:w-1/2 flex justify-center">
           <div className="relative w-full max-w-xxl aspect-[1/1] overflow-hidden rounded-xl">
             <iframe 
-              src="../../public/vndax_visual_final.html"
+              src="/vndax_visual_final.html"
               title="Coin Animation" 
               className="w-full h-full border-none rounded-xl"
               frameBorder="0"
