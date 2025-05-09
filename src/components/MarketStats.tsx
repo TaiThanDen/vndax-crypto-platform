@@ -54,7 +54,7 @@ const MarketStats = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Left Column - Stats */}
           <div className="flex flex-col space-y-8">
-            <div className="bg-vndax-darkgray rounded-lg p-6 flex items-center gap-4">
+            <div className="bg-vndax-nonblack rounded-lg p-6 flex items-center gap-4">
               <FaHandHoldingDollar  className="text-vndax-green w-8 h-8" />
               <div>
                 <div className="text-xl text-gray-400 mb-1">Tổng tài sản quản lý</div>
@@ -62,7 +62,7 @@ const MarketStats = () => {
               </div>
             </div>
             
-            <div className="bg-vndax-darkgray rounded-lg p-6 flex items-center gap-4">
+            <div className="bg-vndax-nonblack rounded-lg p-6 flex items-center gap-4">
               <GrTransaction   className="text-vndax-green w-8 h-8" />
               <div>
                 <div className="text-xl text-gray-400 mb-1">Tổng giao dịch 24h</div>
@@ -70,7 +70,7 @@ const MarketStats = () => {
               </div>
             </div>
             
-            <div className="bg-vndax-darkgray rounded-lg p-6 flex items-center gap-4">
+            <div className="bg-vndax-nonblack rounded-lg p-6 flex items-center gap-4">
               <FaCoins   className="text-vndax-green w-8 h-8" />
               <div>
                 <div className="text-xl text-gray-400 mb-1">Số lượng coin/token</div>
@@ -80,7 +80,7 @@ const MarketStats = () => {
           </div>
           
           {/* Right Column - Market Table */}
-          <div className="bg-vndax-darkgray rounded-lg overflow-hidden">
+          <div className="bg-vndax-nonblack rounded-lg overflow-hidden">
             <div className="flex justify-between items-center p-4 border-b border-vndax-lightgray">
               <div className="text-xl font-medium text-white">Cặp giao dịch nổi bật</div>
               <Button 
