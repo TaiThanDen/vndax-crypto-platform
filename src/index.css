@@ -1,0 +1,74 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 142 76% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 142 76% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 142 76% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-vndax-black text-foreground;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-vndax-green text-white px-5 py-2 rounded-md font-medium hover:bg-vndax-darkgreen transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply border border-vndax-green text-vndax-green px-5 py-2 rounded-md font-medium hover:bg-vndax-green/10 transition-colors;
+  }
+  
+  .section-title {
+    @apply text-3xl font-bold mb-8;
+  }
+  
+  .container-custom {
+    @apply px-4 md:px-8 lg:px-12 mx-auto max-w-7xl;
+  }
+  
+  .ticker-item {
+    @apply flex items-center gap-4 px-6;
+  }
+}
