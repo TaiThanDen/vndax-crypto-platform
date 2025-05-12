@@ -1,6 +1,8 @@
 import React from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const Trading = () => {
+  const { t } = useLanguage();
   return (
     <section className="bg-vndax-black py-16 lg:py-24" id="trading">
       <div className="container-custom flex flex-col lg:flex-row items-start justify-between">
@@ -21,7 +23,7 @@ const Trading = () => {
         {/* Right Column - Content */}
         <div className="lg:w-1/2 flex flex-col items-center lg:items-start mt-8 lg:mt-0">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-28 text-center lg:text-left self-start">
-            Giao dịch cả khi đang di chuyển. Mọi lúc, mọi nơi.
+            {t('tradingTitle')}
           </h2>
 
           {/* QR Code and Text */}
@@ -34,8 +36,8 @@ const Trading = () => {
               />
             </div>
             <p className="text-xl text-gray-300">
-              Quét để tải về ứng dụng <br />
-              <p className="text-xxl text-white font-bold">iOS và Android</p>
+              {t('tradingDownload')} <br />
+              <p className="text-xxl text-white font-bold">{t('tradingDownloadPlatform')}</p>
             </p>
           </div>
 
