@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronRight } from 'lucide-react';
+import Visual from "@/components/Visual";
 
 const Hero = () => {
   return (
@@ -29,13 +30,7 @@ const Hero = () => {
         
         <div className="lg:w-1/2 flex justify-center">
           <div className="relative w-full max-w-xxl aspect-[1/1] overflow-hidden rounded-xl">
-            <iframe 
-              src="/dist/vndax_visual_final.html"
-              title="Coin Animation" 
-              className="w-full h-full border-none rounded-xl"
-              frameBorder="0"
-              scrolling="no"
-            ></iframe>
+            <Visual />
           </div>
         </div>
       </div>
