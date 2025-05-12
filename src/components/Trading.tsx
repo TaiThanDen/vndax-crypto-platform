@@ -7,7 +7,7 @@ const Trading = () => {
     <section className="bg-vndax-black py-16 lg:py-24" id="trading">
       <div className="container-custom flex flex-col lg:flex-row items-start justify-between">
         {/* Left Column - Phone Mockup with Video */}
-        <div className="lg:w-1/2 flex justify-center">
+        <div className="lg:w-1/2 flex justify-center mx-auto">
           <div className="relative w-auto h-[600px] overflow-hidden bg-vndax-darkgray shadow-lg">
             <video
               src="https://img.bgstatic.com/video/msg/Ex-EN-1734602916000.mp4"
@@ -27,22 +27,22 @@ const Trading = () => {
           </h2>
 
           {/* QR Code and Text */}
-          <div className="flex items-center gap-6 mb-11">
+          <div className="hidden sm:flex items-center gap-6 mb-11">
             <div className="bg-white rounded-2xl w-auto h-auto">
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
-                alt="QR Code"
-                className="w-auto h-[200px]"
+                  src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                  alt="QR Code"
+                  className="w-auto h-[200px]"
               />
             </div>
-            <p className="text-xl text-gray-300">
+            <div className="text-xl text-gray-300">
               {t('tradingDownload')} <br />
               <p className="text-xxl text-white font-bold">{t('tradingDownloadPlatform')}</p>
-            </p>
+            </div>
           </div>
 
           {/* Platform Icons */}
-          <div className="flex gap-32 mt-12">
+          <div className="flex gap-20 sm:gap-40 lg:gap-32 mt-12 flex-wrap justify-center sm:justify-start">
             <div className="group flex flex-col items-center relative hover:scale-110 transition-transform duration-300">
               <div className="absolute inset-[-25px] bg-vndax-darkgray rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 "></div>
               <img

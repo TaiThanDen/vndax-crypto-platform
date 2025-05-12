@@ -94,14 +94,14 @@ const MarketStats = () => {
               </Button>
             </div>
             
-            <div className="overflow-x-auto">
+            <div className="overflow">
               <table className="w-full">
                 <thead className="text-gray-400 text-sm">
                   <tr className="border-b border-vndax-lightgray">
                     <th className="py-3 px-4 text-left">{t('tradeTableAsset')}</th>
                     <th className="py-3 px-4 text-right">{t('tradeTablePrice')}</th>
                     <th className="py-3 px-4 text-right">{t('tradeTableShift')}</th>
-                    <th className="py-3 px-4 text-right">{t('tradeTableTrade')}</th>
+                    <th className="py-3 px-4 hidden sm:flex text-right ">{t('tradeTableTrade')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,7 +122,7 @@ const MarketStats = () => {
                         </div>
                       </td>
                       <td className="py-3 px-4 text-right">
-                        <div className="flex justify-end gap-1">
+                        <div className="hidden sm:flex justify-end gap-1">
                           <Button variant="ghost" size="sm" className="h-7 text-xs bg-green-500/10 text-green-500 hover:text-white hover:bg-green-500/80">{t('tradeTableBuy')}</Button>
                           <Button variant="ghost" size="sm" className="h-7 text-xs bg-red-500/10 text-red-500 hover:text-white hover:bg-red-500/80">{t('tradeTableSell')}</Button>
                         </div>
