@@ -38,7 +38,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         for (const k of keys) {
             value = value?.[k];
         }
-        return value ?? key;
+        return typeof value === 'string' ? value : key;
     };
 
     return (
