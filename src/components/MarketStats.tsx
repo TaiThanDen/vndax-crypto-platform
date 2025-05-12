@@ -6,8 +6,10 @@ import { } from "react-icons";
 import { GrTransaction } from "react-icons/gr";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { TrendingUp, TrendingDown, DollarSign, BarChart2, Layers } from 'lucide-react';
+import { useLanguage } from "../context/LanguageContext";
 
 const markets = [
+
   { 
     name: 'Bitcoin', 
     symbol: 'BTC/USDT', 
@@ -46,10 +48,11 @@ const markets = [
 ];
 
 const MarketStats = () => {
+  const { t } = useLanguage();
   return (
     <section className="bg-vndax-black py-16" id="market">
       <div className="container-custom">
-        <h2 className="section-title text-center text-white mb-12">Số 1 về thanh khoản thị trường</h2>
+        <h2 className="section-title text-center text-white mb-12">{t('market')}</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Left Column - Stats */}
@@ -57,15 +60,15 @@ const MarketStats = () => {
             <div className="bg-vndax-nonblack rounded-lg p-6 flex items-center gap-4">
               <FaHandHoldingDollar  className="text-vndax-green w-8 h-8" />
               <div>
-                <div className="text-xl text-gray-400 mb-1">Tổng tài sản quản lý</div>
-                <div className="text-3xl md:text-4xl font-bold text-white">$1.2 Tỷ USD</div>
+                <div className="text-xl text-gray-400 mb-1">{t('assetTitle')}</div>
+                <div className="text-3xl md:text-4xl font-bold text-white">{t('assetTitle')}</div>
               </div>
             </div>
             
             <div className="bg-vndax-nonblack rounded-lg p-6 flex items-center gap-4">
               <GrTransaction   className="text-vndax-green w-8 h-8" />
               <div>
-                <div className="text-xl text-gray-400 mb-1">Tổng giao dịch 24h</div>
+                <div className="text-xl text-gray-400 mb-1">{t('totalTradesTitle')}</div>
                 <div className="text-3xl md:text-4xl font-bold text-white">$328M</div>
               </div>
             </div>
@@ -73,7 +76,7 @@ const MarketStats = () => {
             <div className="bg-vndax-nonblack rounded-lg p-6 flex items-center gap-4">
               <FaCoins   className="text-vndax-green w-8 h-8" />
               <div>
-                <div className="text-xl text-gray-400 mb-1">Số lượng coin/token</div>
+                <div className="text-xl text-gray-400 mb-1">{t('coinTitle')}</div>
                 <div className="text-3xl md:text-4xl font-bold text-white">150+</div>
               </div>
             </div>
@@ -82,12 +85,12 @@ const MarketStats = () => {
           {/* Right Column - Market Table */}
           <div className="bg-vndax-nonblack rounded-lg overflow-hidden">
             <div className="flex justify-between items-center p-4 border-b border-vndax-lightgray">
-              <div className="text-xl font-medium text-white">Cặp giao dịch nổi bật</div>
+              <div className="text-xl font-medium text-white">{t('topTradesTitle')}</div>
               <Button 
                 variant="ghost" 
                 className="text-vndax-green hover:text-white hover:bg-vndax-lightgray"
               >
-                Xem tất cả
+                {t('topTradesSeeAll')}
               </Button>
             </div>
             
@@ -95,10 +98,10 @@ const MarketStats = () => {
               <table className="w-full">
                 <thead className="text-gray-400 text-sm">
                   <tr className="border-b border-vndax-lightgray">
-                    <th className="py-3 px-4 text-left">Tài sản</th>
-                    <th className="py-3 px-4 text-right">Giá</th>
-                    <th className="py-3 px-4 text-right">Biến động 24h</th>
-                    <th className="py-3 px-4 text-right">Giao dịch</th>
+                    <th className="py-3 px-4 text-left">{t('tradeTableAsset')}</th>
+                    <th className="py-3 px-4 text-right">{t('tradeTablePrice')}</th>
+                    <th className="py-3 px-4 text-right">{t('tradeTableShift')}</th>
+                    <th className="py-3 px-4 text-right">{t('tradeTableTrade')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -120,8 +123,8 @@ const MarketStats = () => {
                       </td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex justify-end gap-1">
-                          <Button variant="ghost" size="sm" className="h-7 text-xs bg-green-500/10 text-green-500 hover:text-white hover:bg-green-500/80">Mua</Button>
-                          <Button variant="ghost" size="sm" className="h-7 text-xs bg-red-500/10 text-red-500 hover:text-white hover:bg-red-500/80">Bán</Button>
+                          <Button variant="ghost" size="sm" className="h-7 text-xs bg-green-500/10 text-green-500 hover:text-white hover:bg-green-500/80">{t('tradeTableBuy')}</Button>
+                          <Button variant="ghost" size="sm" className="h-7 text-xs bg-red-500/10 text-red-500 hover:text-white hover:bg-red-500/80">{t('tradeTableSell')}</Button>
                         </div>
                       </td>
                     </tr>
