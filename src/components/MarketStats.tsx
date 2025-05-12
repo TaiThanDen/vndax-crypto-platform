@@ -50,13 +50,13 @@ const markets = [
 const MarketStats = () => {
   const { t } = useLanguage();
   return (
-    <section className="bg-vndax-black py-16" id="market">
+    <section className="bg-vndax-black py-16 " id="market">
       <div className="container-custom">
         <h2 className="section-title text-center text-white mb-12">{t('market')}</h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10"  data-aos="fade-up" >
           {/* Left Column - Stats */}
-          <div className="flex flex-col space-y-8">
+          <div className="flex flex-col space-y-8" data-aos="fade-up">
             <div className="bg-vndax-nonblack rounded-lg p-6 flex items-center gap-4">
               <FaHandHoldingDollar  className="text-vndax-green w-8 h-8" />
               <div>
@@ -83,7 +83,7 @@ const MarketStats = () => {
           </div>
           
           {/* Right Column - Market Table */}
-          <div className="bg-vndax-nonblack rounded-lg overflow-hidden">
+          <div className="bg-vndax-nonblack rounded-lg overflow-hidden" data-aos="fade-up">
             <div className="flex justify-between items-center p-4 border-b border-vndax-lightgray">
               <div className="text-xl font-medium text-white">{t('topTradesTitle')}</div>
               <Button 

@@ -5,7 +5,7 @@ import { Facebook, Twitter, Youtube, Instagram, Linkedin, MessageCircle } from '
 const Footer = () => {
   const { t } = useLanguage();
   return (
-    <footer className="bg-black pt-16 pb-8" id="support">
+    <footer className="bg-black pt-16 pb-8" data-aos="fade-up" id="support">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1: Logo & Description */}

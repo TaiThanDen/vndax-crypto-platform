@@ -29,12 +29,12 @@ const Security = () => {
 
   return (
       <section className="bg-vndax-black py-16" id="security">
-        <div className="container-custom px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white mb-12">
+        <div className="container-custom px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white mb-12" data-aos="fade-up">
             {t('securityTitle')}
           </h2>
 
-          <div className="relative rounded-lg overflow-hidden bg-black mb-12 mx-auto w-full max-w-5xl">
+          <div className="relative rounded-lg overflow-hidden bg-black mb-12 mx-auto w-full max-w-5xl" data-aos="fade-up">
             <video
                 src="https://img.bgstatic.com/video/msg/Safe-5s-1732170834-2x.mp4"
                 autoPlay
@@ -45,7 +45,7 @@ const Security = () => {
             ></video>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" data-aos="fade-up">
             {securityFeatures.map((feature, index) => (
                 <div key={index}
                      className="bg-vndax-darkgray rounded-lg p-6 hover:bg-vndax-lightgray transition-colors">

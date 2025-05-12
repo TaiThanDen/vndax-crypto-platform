@@ -6,10 +6,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from './context/LanguageContext';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
+
+
 
 const queryClient = new QueryClient();
 
 const App = () => (
+    useEffect(() => {
+      AOS.init({
+        duration: 800,      // animation duration in ms
+        once: true,         // whether animation should happen only once
+        offset: 100,        // how far from viewport the animation should trigger
+      });
+    }, []),
+
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />

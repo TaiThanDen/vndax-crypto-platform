@@ -5,9 +5,9 @@ const Trading = () => {
   const { t } = useLanguage();
   return (
     <section className="bg-vndax-black py-16 lg:py-24" id="trading">
-      <div className="container-custom flex flex-col lg:flex-row items-start justify-between">
+      <div className="container-custom flex flex-col lg:flex-row items-start justify-between" data-aos="fade-up">
         {/* Left Column - Phone Mockup with Video */}
-        <div className="lg:w-1/2 flex justify-center mx-auto">
+        <div className="lg:w-1/2 flex justify-center mx-auto" data-aos="fade-up">
           <div className="relative w-auto h-[600px] overflow-hidden bg-vndax-darkgray shadow-lg">
             <video
               src="https://img.bgstatic.com/video/msg/Ex-EN-1734602916000.mp4"
@@ -21,7 +21,7 @@ const Trading = () => {
         </div>
 
         {/* Right Column - Content */}
-        <div className="lg:w-1/2 flex flex-col items-center lg:items-start mt-8 lg:mt-0">
+        <div className="lg:w-1/2 flex flex-col items-center lg:items-start mt-8 lg:mt-0" data-aos="fade-up">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-28 text-center lg:text-left self-start">
             {t('tradingTitle')}
           </h2>
@@ -42,7 +42,7 @@ const Trading = () => {
           </div>
 
           {/* Platform Icons */}
-          <div className="flex gap-20 sm:gap-40 lg:gap-32 mt-12 flex-wrap justify-center sm:justify-start">
+          <div className="flex gap-20 sm:gap-40 lg:gap-32 mt-12 flex-wrap justify-center sm:justify-start" data-aos="fade-up">
             <div className="group flex flex-col items-center relative hover:scale-110 transition-transform duration-300">
               <div className="absolute inset-[-25px] bg-vndax-darkgray rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 "></div>
               <img

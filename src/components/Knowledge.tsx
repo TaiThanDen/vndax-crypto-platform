@@ -50,7 +50,7 @@ const Knowledge = () => {
 
 
   return (
-      <section className="bg-black py-16" id="knowledge">
+      <section className="bg-black py-16" data-aos="fade-up" id="knowledge">
         <div className="container-custom">
           <h2 className="section-title text-center text-white mb-12">
             {t("knowledgeArticle.title")}
