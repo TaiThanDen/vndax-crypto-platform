@@ -72,3 +72,41 @@
     @apply flex items-center gap-4 px-6;
   }
 }
+/* Thin custom scrollbar */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* gray-600 */
+  border-radius: 4px;
+}
+
+/* Firefox support */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 transparent;
+}
+/* Thin custom scrollbar */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* gray-600 */
+  border-radius: 4px;
+}
+
+/* Firefox support */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 transparent;
+}
