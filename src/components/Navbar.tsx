@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
             href="/"
             className="text-vndax-green font-bold text-2xl uppercase"
           >
-            VNDAX
+           VNDAX
           </a>
           <div className="hidden md:flex items-center space-x-8">
             <a
