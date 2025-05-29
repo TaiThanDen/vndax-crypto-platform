@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "../context/LanguageContext";
 import { MdLanguage } from "react-icons/md";
 import type { Language } from "@/i18n";
+import { Link } from "react-router-dom";
 
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: "en", label: "English" },
@@ -41,12 +42,11 @@ const Navbar: React.FC = () => {
     <nav className="bg-vndax-black py-4 sticky top-0 z-50">
       <div className="container-custom flex justify-between items-center">
         <div className="flex items-center space-x-8">
-          <a
-            href="/"
-            className="text-vndax-green font-bold text-2xl uppercase"
-          >
-            VNDAX
-          </a>
+          <Link to="/">
+            <a className="text-vndax-green font-bold text-2xl uppercase">
+              VNDAX
+            </a>
+          </Link>
           <div className="hidden md:flex items-center space-x-8">
             <a
               href="/"
