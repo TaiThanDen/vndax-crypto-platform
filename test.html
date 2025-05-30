@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bitget Chart Demo</title>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <style>
+    body {
+      background: #181A20;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .chart-container {
+      width: 320px;
+      margin: 40px auto;
+      background: #232529;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 24px #0002;
+    }
+    .label {
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #f1c40f;
+    }
+  </style>
+    </head>
+    <body>
+        <div class="chart-container">
+            <div class="label">BTC/USDT</div>
+            <div id="chart"></div>
+        </div>
+        <script>
+    // Dữ liệu giá ví dụ (giả lập)
+    var priceData = [
+      108400, 108320, 108300, 108420, 108500, 108102, 108302, 108450, 108330, 108400
+    ];
+    var lastPrice = priceData[priceData.length-1];
+    var firstPrice = priceData[0];
+    var isUp = lastPrice >= firstPrice;
+
+    var options = {
+      chart: {
+        type: 'line',
+        height: 90,
+        sparkline: { enabled: true },
+        toolbar: { show: false },
+        background: 'transparent'
+      },
+      series: [{
+        data: priceData
+      }],
+      stroke: {
+        width: 2.5,
+        curve: 'smooth'
+      },
+      colors: [isUp ? '#00e396' : '#ff4560'],
+      tooltip: {
+        enabled: true,
+        theme: 'dark',
+        y: {
+          formatter: function(value) {
+            return 'Giá: ' + value.toLocaleString();
+          },
+          title: {
+            formatter: () => ''
+          }
+        }
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
+    </body>
+</html>

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChevronRight } from 'lucide-react';
-import Visual from "@/components/Visual";
+import { ChevronRight } from "lucide-react";
+import Visual from "@/components/index/Visual";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Hero = () => {
-  const { t } = useLanguage();  // Use the translation function
+  const { t } = useLanguage(); // Use the translation function
 
   return (
     <section className="bg-vndax-black py-8 lg:py-12">
@@ -14,7 +14,10 @@ const Hero = () => {
         <div className="lg:w-1/2 mb-12 lg:mb-0">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {/* Translate title using the keys */}
-            {t("hero.title1")} <span className="text-vndax-green">{t("hero.safe")}</span> {t("hero.and")} <span className="text-vndax-green">{t("hero.simple")}</span>
+            {t("hero.title1")}{" "}
+            <span className="text-vndax-green">{t("hero.safe")}</span>{" "}
+            {t("hero.and")}{" "}
+            <span className="text-vndax-green">{t("hero.simple")}</span>
           </h1>
           <p className="text-lg text-gray-300 mb-8">
             {/* Translate description */}
@@ -24,7 +27,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 max-w-lg">
             <Input
               type="email"
-              placeholder={t("hero.emailPlaceholder")}  // Translate input placeholder
+              placeholder={t("hero.emailPlaceholder")} // Translate input placeholder
               className="bg-vndax-darkgray border-vndax-lightgray"
             />
             <Button className="bg-vndax-green hover:bg-vndax-darkgreen text-white whitespace-nowrap">
@@ -35,12 +38,18 @@ const Hero = () => {
         </div>
         <div className="lg:w-1/2 flex justify-center">
           <div className="relative w-full max-w-xxl aspect-[1/1] overflow-hidden rounded-xl">
-            <Visual />
+            <video
+              src="https://img.bgstatic.com/multiLang/web/3f6e3e06ce507ce78b54979a7e68897d.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto object-contain"
+            ></video>
+            {/* <Visual /> */}
           </div>
         </div>
       </div>
-
-
     </section>
   );
 };

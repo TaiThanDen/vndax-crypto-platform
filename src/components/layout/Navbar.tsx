@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../../context/LanguageContext";
 import { MdLanguage } from "react-icons/md";
 import type { Language } from "@/i18n";
+import { Link } from "react-router-dom";
 
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: "en", label: "English" },
@@ -41,43 +42,49 @@ const Navbar: React.FC = () => {
     <nav className="bg-vndax-black py-4 sticky top-0 z-50">
       <div className="container-custom flex justify-between items-center">
         <div className="flex items-center space-x-8">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-vndax-green font-bold text-2xl uppercase"
           >
-           VNDAX
-          </a>
+            VNDAX
+          </Link>
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-white hover:text-vndax-green transition-colors"
             >
               {t("home")}
-            </a>
-            <a
-              href="#trading"
+            </Link>
+            <Link
+              to="/market"
+              className="text-white hover:text-vndax-green transition-colors"
+            >
+              Thị trường
+            </Link>
+            <Link
+              to="#trading"
               className="text-white hover:text-vndax-green transition-colors"
             >
               {t("trading")}
-            </a>
-            <a
-              href="#security"
+            </Link>
+            <Link
+              to="#security"
               className="text-white hover:text-vndax-green transition-colors"
             >
               {t("security")}
-            </a>
-            <a
-              href="#knowledge"
+            </Link>
+            <Link
+              to="#knowledge"
               className="text-white hover:text-vndax-green transition-colors"
             >
               {t("knowledge")}
-            </a>
-            <a
-              href="#support"
+            </Link>
+            <Link
+              to="#support"
               className="text-white hover:text-vndax-green transition-colors"
             >
               {t("support")}
-            </a>
+            </Link>
           </div>
         </div>
 
