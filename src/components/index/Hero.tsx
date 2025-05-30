@@ -38,7 +38,15 @@ const Hero = () => {
         </div>
         <div className="lg:w-1/2 flex justify-center">
           <div className="relative w-full max-w-xxl aspect-[1/1] overflow-hidden rounded-xl">
-            <Visual />
+            <video
+              src="https://img.bgstatic.com/multiLang/web/3f6e3e06ce507ce78b54979a7e68897d.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto object-contain"
+            ></video>
+            {/* <Visual /> */}
           </div>
         </div>
       </div>
