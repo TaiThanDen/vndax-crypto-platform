@@ -42,7 +42,12 @@ const Navbar: React.FC = () => {
     <nav className="bg-vndax-black py-4 sticky top-0 z-50">
       <div className="container-custom flex justify-between items-center">
         <div className="flex items-center space-x-8">
-          <Link to="/">VNDAX</Link>
+          <Link
+            to="/"
+            className="text-vndax-green font-bold text-2xl uppercase"
+          >
+            VNDAX
+          </Link>
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
