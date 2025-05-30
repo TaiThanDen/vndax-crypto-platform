@@ -7,6 +7,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import MainLayout from "@/components/layout/MainLayout";
 import Index from "@/pages/Index";
 import NotFound from "./pages/NotFound";
+import Document from "./pages/Document";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -32,7 +33,9 @@ const App = () => (
             <MainLayout>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/doc" element={<Document />} />
                 <Route path="/market" element={<Market />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </MainLayout>
