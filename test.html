@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Bitget Chart Demo</title>
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        <style>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bitget Chart Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
     body {
       background: #181A20;
       color: #fff;
       font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
     }
     .chart-container {
       width: 320px;
@@ -17,20 +18,72 @@
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 4px 24px #0002;
+      transition: background 0.3s;
     }
     .label {
       margin-bottom: 8px;
       font-weight: bold;
       color: #f1c40f;
     }
+    .theme-toggle {
+      display: block;
+      margin: 24px auto 0;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 5px;
+      background: #f1c40f;
+      color: #232529;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    /* Sáng */
+    body.light {
+      background: #f8fafd;
+      color: #232529;
+    }
+    body.light .chart-container {
+      background: #fff;
+    }
+    body.light .label {
+      color: #e67e22;
+    }
+    body.light .theme-toggle {
+      background: #232529;
+      color: #fff;
+    }
   </style>
-    </head>
-    <body>
-        <div class="chart-container">
-            <div class="label">BTC/USDT</div>
-            <div id="chart"></div>
-        </div>
-        <script>
+  </head>
+  <body>
+    <button class="theme-toggle" id="toggleTheme">🌙 Chuyển sang sáng</button>
+    <div class="chart-container">
+      <div class="label">BTC/USDT</div>
+      <div id="chart"></div>
+    </div>
+    <script>
+    // Nhớ lưu theme vào localStorage để F5 không bị reset
+    let theme = localStorage.getItem('theme') || 'dark';
+    const btn = document.getElementById('toggleTheme');
+    const body = document.body;
+
+    function applyTheme() {
+      if (theme === 'light') {
+        body.classList.add('light');
+        btn.textContent = '🌙 Chuyển sang tối';
+      } else {
+        body.classList.remove('light');
+        btn.textContent = '☀️ Chuyển sang sáng';
+      }
+      localStorage.setItem('theme', theme);
+      // Cập nhật lại chart
+      updateChartTheme();
+    }
+
+    btn.onclick = function() {
+      theme = theme === 'light' ? 'dark' : 'light';
+      applyTheme();
+    };
+
     // Dữ liệu giá ví dụ (giả lập)
     var priceData = [
       108400, 108320, 108300, 108420, 108500, 108102, 108302, 108450, 108330, 108400
@@ -39,6 +92,7 @@
     var firstPrice = priceData[0];
     var isUp = lastPrice >= firstPrice;
 
+    var chart;
     var options = {
       chart: {
         type: 'line',
@@ -57,7 +111,7 @@
       colors: [isUp ? '#00e396' : '#ff4560'],
       tooltip: {
         enabled: true,
-        theme: 'dark',
+        theme: theme,
         y: {
           formatter: function(value) {
             return 'Giá: ' + value.toLocaleString();
@@ -69,8 +123,23 @@
       }
     };
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
+    function updateChartTheme() {
+      // Nếu chart chưa tạo, thì tạo chart mới
+      if (!chart) {
+        options.tooltip.theme = theme;
+        chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      } else {
+        chart.updateOptions({
+          tooltip: {
+            theme: theme
+          }
+        });
+      }
+    }
+
+    // Khởi tạo theme và chart
+    applyTheme();
   </script>
-    </body>
+  </body>
 </html>

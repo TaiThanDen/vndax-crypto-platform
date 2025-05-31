@@ -1,7 +1,7 @@
 import React from "react";
 import CoinTable from "../components/market/MarketTable";
 
-function market() {
+function Market() {
   return (
     <div>
       <CoinTable />
@@ -9,4 +9,4 @@ function market() {
   );
 }
 
-export default market;
+export default Market;

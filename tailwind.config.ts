@@ -1,8 +1,7 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
+	darkMode: "class",
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -25,6 +24,8 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				increase: '#25a750',
+        		decrease: '#ca3f64',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -108,5 +109,9 @@ export default {
 			}
 		}
 	},
+	  variants: {
+    extend: {},
+  },
 	plugins: [require("tailwindcss-animate")],
+	
 } satisfies Config;

@@ -181,36 +181,42 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Nav links */}
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-white hover:text-vndax-green transition-colors"
           >
             {t("home")}
-          </a>
-          <a
-            href="#trading"
+          </Link>
+          <Link
+            to="/market"
+            className="text-white hover:text-vndax-green transition-colors"
+          >
+            Thị trường
+          </Link>
+          <Link
+            to="#trading"
             className="text-white hover:text-vndax-green transition-colors"
           >
             {t("trading")}
-          </a>
-          <a
-            href="#security"
+          </Link>
+          <Link
+            to="#security"
             className="text-white hover:text-vndax-green transition-colors"
           >
             {t("security")}
-          </a>
-          <a
-            href="#knowledge"
+          </Link>
+          <Link
+            to="#knowledge"
             className="text-white hover:text-vndax-green transition-colors"
           >
             {t("knowledge")}
-          </a>
-          <a
-            href="#support"
+          </Link>
+          <Link
+            to="#support"
             className="text-white hover:text-vndax-green transition-colors"
           >
             {t("support")}
-          </a>
+          </Link>
 
           {/* Language selector */}
           <Button

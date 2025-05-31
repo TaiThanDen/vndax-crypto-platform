@@ -12,6 +12,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import Market from "./pages/market";
+import Trade_spot from "./pages/Trade_spot";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +36,7 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/doc" element={<Document />} />
                 <Route path="/market" element={<Market />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="/trade_spot" element={<Trade_spot />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </MainLayout>
