@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-vndax-black py-4 sticky top-0 z-50">
-      <div className="container-custom flex justify-between items-center">
+      <div className="pl-6 pr-6 flex justify-between items-center">
         <div className="flex items-center space-x-8">
           <Link
             to="/"
@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
               Thị trường
             </Link>
             <Link
-              to="#trading"
+              to="/trade_spot"
               className="text-white hover:text-vndax-green transition-colors"
             >
               {t("trading")}
@@ -194,7 +194,7 @@ const Navbar: React.FC = () => {
             Thị trường
           </Link>
           <Link
-            to="#trading"
+            to="/trade_spot"
             className="text-white hover:text-vndax-green transition-colors"
           >
             {t("trading")}

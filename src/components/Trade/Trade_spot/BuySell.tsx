@@ -1,144 +1,185 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface BuySellProps {
   symbol?: string;
+  type?: "buy" | "sell";
 }
 
-const BuySell: React.FC<BuySellProps> = ({ symbol = "BTCUSDT" }) => {
+const BuySell: React.FC<BuySellProps> = ({ symbol = "BTCUSDT", type }) => {
   const [side, setSide] = useState<"BUY" | "SELL">("BUY");
   const [price, setPrice] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [percent, setPercent] = useState<number>(0);
-  const [message, setMessage] = useState<string>("");
+  const [tab, setTab] = useState<"limit" | "market" | "tpsl">("limit");
+  const [margin, setMargin] = useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!price || !amount) {
-      setMessage("Vui lòng nhập đầy đủ giá và số lượng!");
-      return;
-    }
-    setMessage(
-      `Đã tạo lệnh ${side === "BUY" ? "Mua" : "Bán"} ${amount} ${symbol.replace(
-        "USDT",
-        ""
-      )} với giá ${price} USDT`
-    );
-    setPrice("");
-    setAmount("");
-    setPercent(0);
-    setTimeout(() => setMessage(""), 3500);
-  };
+  const baseSymbol = symbol.replace("USDT", "");
 
-  // Tính tổng USDT
   const total =
     price && amount ? (parseFloat(price) * parseFloat(amount)).toFixed(2) : "";
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Đặt lệnh ${side} ${amount} ${baseSymbol} tại giá ${price} USDT`);
+  };
+
+  // ĐỒNG BỘ side với prop type mỗi khi type thay đổi
+  useEffect(() => {
+    if (type === "buy") setSide("BUY");
+    if (type === "sell") setSide("SELL");
+  }, [type]);
+
   return (
-    <div className=" rounded-xl pl-4 py-4 px-4 w-auto max-w-[300px] h-[537px] border border-[#23262F]">
-      <div className="flex gap-2 mb-4">
+    <div className="bg-[#0f1115] border border-[#23262F] rounded-xl p-4 text-white w-full max-w-md">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-4">
+        <span className="text-sm font-medium">Xác nhận lệnh</span>
+        <div className="flex pt-6 items-center gap-2">
+          <span className="text-xs text-gray-400">Ký quỹ</span>
+          <label className="inline-flex relative items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              checked={margin}
+              onChange={() => setMargin(!margin)}
+            />
+            <div className="w-10 h-5 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:bg-green-500 after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+          </label>
+        </div>
+      </div>
+
+      {/* Tabs: Buy/Sell */}
+      <div className="flex mb-3">
         <button
-          className={`flex-1 py-2 rounded-lg font-bold text-[16px]  transition ${
+          className={`flex-1 py-2 font-bold rounded-l-lg ${
             side === "BUY"
               ? "bg-[#25a750] text-white"
-              : "bg-[#23262F] text-white"
+              : "bg-[#1e1f23] text-gray-300"
           }`}
           onClick={() => setSide("BUY")}
-          type="button"
         >
           Mua
         </button>
         <button
-          className={`flex-1 py-2 rounded-lg font-bold text-[16px] transition ${
+          className={`flex-1 py-2 font-bold rounded-r-lg ${
             side === "SELL"
               ? "bg-[#ca3f64] text-white"
-              : "bg-[#23262F] text-white"
+              : "bg-[#1e1f23] text-gray-300"
           }`}
           onClick={() => setSide("SELL")}
-          type="button"
         >
           Bán
         </button>
       </div>
-      <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+
+      {/* Tabs: Order Type */}
+      <div className="flex mb-4 border border-[#23262F] rounded-lg overflow-hidden text-sm">
+        <button
+          onClick={() => setTab("limit")}
+          className={`flex-1 py-2 ${
+            tab === "limit"
+              ? "bg-[#23262F] text-white"
+              : "bg-[#1e1f23] text-gray-400"
+          }`}
+        >
+          Giới hạn
+        </button>
+        <button
+          onClick={() => setTab("market")}
+          className={`flex-1 py-2 ${
+            tab === "market"
+              ? "bg-[#23262F] text-white"
+              : "bg-[#1e1f23] text-gray-400"
+          }`}
+        >
+          Thị trường
+        </button>
+        <button
+          onClick={() => setTab("tpsl")}
+          className={`flex-1 py-2 ${
+            tab === "tpsl"
+              ? "bg-[#23262F] text-white"
+              : "bg-[#1e1f23] text-gray-400"
+          }`}
+        >
+          TP/SL
+        </button>
+      </div>
+
+      <form className="space-y-3" onSubmit={handleSubmit}>
+        {/* Giá */}
         <div>
           <label className="text-xs text-gray-400 mb-1 block">Giá (USDT)</label>
           <input
             type="number"
-            min={0}
-            className="w-full bg-[#23262F] text-white rounded-lg p-3 border border-[#23262F] focus:border-[#4ade80] outline-none text-[16px]"
-            placeholder="Nhập giá"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            placeholder="666.9"
+            className="w-full bg-[#23262F] text-white rounded-lg p-3 outline-none text-sm"
           />
         </div>
+
+        {/* Số lượng */}
         <div>
           <label className="text-xs text-gray-400 mb-1 block">
-            Số lượng ({symbol.replace("USDT", "")})
+            Số lượng ({baseSymbol})
           </label>
           <input
             type="number"
-            min={0}
-            className="w-full bg-[#23262F] text-white rounded-lg p-3 border border-[#23262F] focus:border-[#4ade80] outline-none text-[16px]"
-            placeholder="Tối thiểu 0,00001"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
+            placeholder="Tối thiểu 0,001"
+            className="w-full bg-[#23262F] text-white rounded-lg p-3 outline-none text-sm"
           />
         </div>
-        {/* Slider chọn % */}
-        <div className="flex items-center gap-2 mt-1">
+
+        {/* Thanh phần trăm */}
+        <div className="flex items-center gap-2">
           <input
             type="range"
             min={0}
             max={100}
             value={percent}
             onChange={(e) => setPercent(Number(e.target.value))}
-            className="w-full accent-[#4ade80] h-1"
+            className="w-full accent-[#4ade80]"
           />
           <span className="text-xs text-gray-400">{percent}%</span>
         </div>
-        {/* Tổng USDT */}
+
+        {/* Tổng */}
         <div>
           <label className="text-xs text-gray-400 mb-1 block">
             Tổng (USDT)
           </label>
           <input
-            className="w-full bg-[#23262F] text-white rounded-lg p-3 border border-[#23262F] outline-none text-[16px]"
             value={total}
             readOnly
             placeholder="0.00"
+            className="w-full bg-[#23262F] text-white rounded-lg p-3 text-sm"
           />
         </div>
-        {/* Dòng phụ */}
-        <div className="flex justify-between text-xs text-gray-400 mt-1">
+
+        {/* Phụ trợ */}
+        <div className="flex justify-between text-xs text-gray-400 mt-2">
           <span>
-            Khả dụng <span className="text-white">-- USDT</span>
+            Khả dụng <span className="text-white">23.83 USDT</span>
           </span>
           <span>
-            Mua tối đa{" "}
-            <span className="text-white">-- {symbol.replace("USDT", "")}</span>
+            Mua tối đa <span className="text-white">0.035745 {baseSymbol}</span>
           </span>
         </div>
+
+        {/* Nút */}
         <button
           type="submit"
-          className={`mt-24 py-3 rounded-lg text-white font-bold text-[16px] transition ${
+          className={`w-full mt-3 py-3 rounded-full text-white font-semibold text-sm ${
             side === "BUY"
               ? "bg-[#25a750] hover:bg-[#1e8e4a]"
               : "bg-[#ca3f64] hover:bg-[#a22d4d]"
           }`}
         >
-          Đặt lệnh {side === "BUY" ? "Mua" : "Bán"}
+          Mua {baseSymbol}
         </button>
-        {message && (
-          <div
-            className={`mt-2 rounded px-2 py-1 text-sm text-center ${
-              side === "BUY"
-                ? "bg-[#25a75022] text-[#25a750]"
-                : "bg-[#ca3f6422] text-[#ca3f64]"
-            }`}
-          >
-            {message}
-          </div>
-        )}
       </form>
     </div>
   );

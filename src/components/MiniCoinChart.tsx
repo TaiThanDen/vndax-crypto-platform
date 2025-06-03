@@ -1,21 +1,21 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-interface MiniCoinChartProps {
+type MiniCoinChartProps = {
   data: number[];
-  coinName?: string;
+  width?: number;
   height?: number;
-  width?: number | string;
-}
+  color?: string;
+};
 
 const MiniCoinChart: React.FC<MiniCoinChartProps> = ({
   data,
-  coinName,
-  height = 90,
-  width = "100%",
+  width = 172,
+  height = 70,
+  color = "#22c55e",
 }) => {
   // Xác định màu dựa theo xu hướng giá
-  const color = data[data.length - 1] >= data[0] ? "#00e396" : "#ff4560";
+  // const color = data[data.length - 1] >= data[0] ? "#00e396" : "#ff4560";
 
   const series = [{ data }];
 
@@ -42,30 +42,31 @@ const MiniCoinChart: React.FC<MiniCoinChartProps> = ({
   return (
     <div
       style={{
-        width: "200px",
+        width,
+        height,
         borderRadius: 10,
-        padding: 14,
-        margin: 4,
         color: "#fff",
+        padding: 0,
+        margin: 0,
+        overflow: "hidden",
       }}
     >
-      {coinName && (
-        <div
-          style={{
-            marginBottom: 8,
-            fontWeight: "bold",
-            color: "#f1c40f",
-          }}
-        >
-          {coinName}
-        </div>
-      )}
+      {/* {coinName && ( */}
+      <div
+        style={{
+          marginBottom: 8,
+          fontWeight: "bold",
+          color: "#f1c40f",
+        }}
+      >
+        {/* {coinName} */}
+      </div>
       <ReactApexChart
         options={options}
         series={series}
         type="line"
         height={height}
-        width="100%"
+        width={width}
       />
     </div>
   );

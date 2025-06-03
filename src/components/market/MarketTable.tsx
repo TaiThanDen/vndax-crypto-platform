@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MiniCoinChart from "../MiniCoinChart";
-import coinData from "../data/coindata";
+// import coinData from "../data/coindata"; // Xóa dòng này
 import {
   TokenBTC,
   TokenETH,
@@ -104,6 +104,30 @@ const PAGE_SIZE = 10; // Số dòng mỗi trang
 export default function MarketTable() {
   const [activeTab, setActiveTab] = useState("spot");
   const [page, setPage] = useState(1);
+  const [coinData, setCoinData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // Chuẩn hóa dữ liệu cho phù hợp với table
+        setCoinData(
+          data.map((coin: any) => ({
+            symbol: coin.symbol.toUpperCase() + "USDT",
+            name: coin.name,
+            price: coin.current_price,
+            change: coin.price_change_percentage_24h?.toFixed(2),
+            volume: coin.total_volume?.toLocaleString(),
+            chart: coin.sparkline_in_7d?.price || [],
+          }))
+        );
+        setLoading(false);
+      });
+  }, []);
 
   // Tính toán dữ liệu cho trang hiện tại
   const totalPage = Math.ceil(coinData.length / PAGE_SIZE);
@@ -180,73 +204,93 @@ export default function MarketTable() {
             </tr>
           </thead>
           <tbody>
-            {pagedData.map((coin) => {
-              const Icon = iconMap[coin.symbol];
-              return (
-                <tr
-                  key={coin.symbol}
-                  className="border-b border-[#23262F] hover:bg-[#23262F] transition text-xs md:text-sm"
-                >
-                  {/* Name */}
-                  <td className="py-2 px-3 font-semibold align-middle">
-                    <span className="inline-flex items-center">
-                      {Icon ? (
-                        <Icon className="w-7 h-7 rounded-full text-base" />
-                      ) : (
-                        <span className="w-7 h-7 bg-gray-700 rounded-full inline-block" />
-                      )}
-                      <span className="ml-2 flex flex-col leading-tight ">
-                        <span>{coin.symbol}</span>
-                        <span className="text-[10px] text-gray-400 text-sm">
-                          {coin.name}
+            {loading ? (
+              <tr>
+                <td colSpan={6} className="text-center py-8">
+                  Loading...
+                </td>
+              </tr>
+            ) : (
+              pagedData.map((coin) => {
+                const Icon = iconMap[coin.symbol];
+                return (
+                  <tr
+                    key={coin.symbol}
+                    className="border-b border-[#23262F] hover:bg-[#23262F] transition text-xs md:text-sm"
+                  >
+                    {/* Name */}
+                    <td className="py-2 px-3 font-semibold align-middle">
+                      <span className="inline-flex items-center">
+                        {Icon ? (
+                          <Icon className="w-7 h-7 rounded-full text-base" />
+                        ) : (
+                          <span className="w-7 h-7 bg-gray-700 rounded-full inline-block" />
+                        )}
+                        <span className="ml-2 flex flex-col leading-tight ">
+                          <span>{coin.symbol}</span>
+                          <span className="text-[10px] text-gray-400 text-sm">
+                            {coin.name}
+                          </span>
                         </span>
                       </span>
-                    </span>
-                  </td>
-                  {/* Last price */}
-                  <td className="py-2 px-3 text-right align-middle whitespace-nowrap">
-                    {coin.price.toLocaleString()}
-                    {/* Mobile: Show % change dưới last price */}
-                    <div
-                      className={`mt-1 text-[11px] ${
+                    </td>
+                    {/* Last price */}
+                    <td className="py-2 px-3 text-right align-middle whitespace-nowrap">
+                      {coin.price.toLocaleString()}
+                      {/* Mobile: Show % change dưới last price */}
+                      <div
+                        className={`mt-1 text-[11px] ${
+                          coin.change < 0 ? "text-red-500" : "text-green-500"
+                        } sm:hidden`}
+                      >
+                        {coin.change > 0 ? "+" : ""}
+                        {coin.change}%
+                      </div>
+                    </td>
+                    {/* Change: chỉ desktop */}
+                    <td
+                      className={`py-2 px-3 text-right align-middle ${
                         coin.change < 0 ? "text-red-500" : "text-green-500"
-                      } sm:hidden`}
+                      } hidden sm:table-cell`}
                     >
                       {coin.change > 0 ? "+" : ""}
                       {coin.change}%
-                    </div>
-                  </td>
-                  {/* Change: chỉ desktop */}
-                  <td
-                    className={`py-2 px-3 text-right align-middle ${
-                      coin.change < 0 ? "text-red-500" : "text-green-500"
-                    } hidden sm:table-cell`}
-                  >
-                    {coin.change > 0 ? "+" : ""}
-                    {coin.change}%
-                  </td>
-                  {/* Cap */}
-                  <td className="py-2 px-3 text-right align-middle whitespace-nowrap">
-                    {coin.volume}
-                  </td>
-                  {/* Chart: desktop only */}
-                  <td className="py-2 px-3 text-center align-middle hidden md:table-cell">
-                    <div style={{ width: 90, margin: "0 auto" }}>
-                      <MiniCoinChart data={coin.chart} height={32} width={90} />
-                    </div>
-                  </td>
-                  {/* Action: desktop only */}
-                  <td className="py-2 px-3 text-center align-middle hidden md:table-cell">
-                    <button className="text-vndax-green font-semibold hover:underline mr-2">
-                      Details
-                    </button>
-                    <button className="text-white font-semibold hover:underline">
-                      Trade
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                    {/* Cap */}
+                    <td className="py-2 px-3 text-right align-middle whitespace-nowrap">
+                      {coin.volume}
+                    </td>
+                    {/* Chart: desktop only */}
+                    <td className="py-2 px-3 text-center align-middle hidden md:table-cell">
+                      <div
+                        style={{
+                          width: 172,
+                          height: 70,
+                          margin: "0 auto",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <MiniCoinChart
+                          data={coin.chart}
+                          height={70}
+                          width={172}
+                          color={coin.change < 0 ? "#ef4444" : "#22c55e"}
+                        />
+                      </div>
+                    </td>
+                    {/* Action: desktop only */}
+                    <td className="py-2 px-3 text-center align-middle hidden md:table-cell">
+                      <button className="text-vndax-green font-semibold hover:underline mr-2">
+                        Details
+                      </button>
+                      <button className="text-white font-semibold hover:underline">
+                        Trade
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
 
