@@ -1,59 +1,124 @@
-import React, { useState } from "react";
-import { BookText, FileText, BarChart2, Search, DollarSign, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react";
+import {
+    BookText,
+    FileText,
+    BarChart2,
+    Search,
+    DollarSign,
+    ChevronLeft,
+    ChevronRight,
+    X,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 const menuItems = [
     { icon: BookText, label: "Hướng dẫn giao dịch futures" },
     { icon: FileText, label: "Quy tắc giao dịch futures" },
     { icon: BarChart2, label: "Dữ liệu giao dịch futures" },
     { icon: Search, label: "Spot" },
+    { icon: Search, label: "Category" },
     { icon: DollarSign, label: "Khoản vay ký quỹ" },
 ];
 
- const Sidebar: React.FC = () => {
-    const [collapsed, setCollapsed] = useState(false);
-    const [hovered, setHovered] = useState(false);
+interface SidebarProps {
+    collapsed: boolean;
+    setCollapsed: (v: boolean) => void;
+    selectedCategory: string | null;
+    setSelectedCategory: (cat: string | null) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed, selectedCategory, setSelectedCategory }) => {
+    const [activePopup, setActivePopup] = useState<number | null>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const categoryContainerRef = useRef<HTMLDivElement>(null);
+    const [isWideEnough, setIsWideEnough] = useState(false);
+
+    const categories = [
+        "Từ CEO", "Lãnh đạo", "Hệ sinh thái", "Cộng đồng", "Thị trường",
+        "Từ thiện", "P2P", "Futures", "Thanh toán", "Earn", "NFT",
+    ];
+
+    const togglePopup = (idx: number) => {
+        setActivePopup(prev => (prev === idx ? null : idx));
+    };
+
+    useEffect(() => {
+        const observer = new ResizeObserver((entries) => {
+            const width = entries[0].contentRect.width;
+            setIsWideEnough(width >= 1315);
+        });
+
+        if (categoryContainerRef.current) {
+            observer.observe(categoryContainerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <div
-            className={`relative h-screen bg-[#0f0f0f] text-white transition-all duration-300 ${
-                collapsed ? "w-16" : "w-64"
-            }`}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-        >
-            {collapsed && hovered && (
-                <div className="absolute top-0 bottom-0 left-full w-10 flex items-center">
-                    <div className="w-px h-full bg-gray-700" />
+        <>
+            <motion.div
+                animate={{ width: collapsed ? 64 : 260 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                className="hidden md:block relative h-screen text-[hsl(var(--foreground))] overflow-visible"
+            >
+                <div className="p-4 flex flex-col gap-2">
+                    {menuItems.map((item, idx) => (
+                        <div
+                            key={idx}
+                            className="flex items-center gap-3 text-sm hover:bg-primary p-2 rounded cursor-pointer transition"
+                        >
+                            <item.icon size={20} />
+                            <AnimatePresence>
+                                {!collapsed && (
+                                    <motion.span
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="whitespace-nowrap"
+                                    >
+                                        {item.label}
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="absolute top-1/2 -translate-y-1/2 right-[-12px] z-20">
                     <button
-                        className="absolute left-1 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-1 rounded-full"
-                        onClick={() => setCollapsed(false)}
+                        className="bg-[#2e2e2e] hover:bg-[#444] text-white p-1 rounded-full shadow-md border border-gray-700"
+                        onClick={() => setCollapsed(!collapsed)}
                     >
-                        <ChevronRight size={16} />
+                        {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
                     </button>
                 </div>
-            )}
+            </motion.div>
 
-            <div className="p-4 flex flex-col gap-3">
-                {menuItems.map((item, idx) => (
-                    <div
-                        key={idx}
-                        className="flex items-center gap-3 text-sm hover:bg-gray-800 p-2 rounded cursor-pointer"
-                    >
-                        <item.icon size={20} />
-                        {!collapsed && <span>{item.label}</span>}
-                    </div>
-                ))}
-            </div>
-
-            {!collapsed && (
-                <button
-                    className="absolute right-[-12px] top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-1 rounded-full"
-                    onClick={() => setCollapsed(true)}
+            <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background flex justify-around items-center pt-5">
+                <div
+                    ref={scrollRef}
+                    className={`mb-10 pb-1 flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide transition-all duration-300 ${isWideEnough ? "justify-center flex-wrap" : "flex-nowrap"}`}
                 >
-                    <ChevronLeft size={16} />
-                </button>
-            )}
-        </div>
+                    {["All", ...categories].map((cat) => {
+                        const isSelected = selectedCategory === (cat === "All" ? null : cat);
+
+                        return (
+                            <button
+                                key={cat}
+                                className={`flex-shrink-0 text-sm px-3 py-1 rounded-full shadow-md transition bg-[hsl(var(--background))] text-[hsl(var(--foreground))] hover:bg-primary hover:text-primary-foreground ${isSelected ? "bg-primary text-primary-foreground font-semibold" : ""}`}
+                                onClick={() => setSelectedCategory(cat === "All" ? null : cat)}
+                            >
+                                {cat}
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+        </>
     );
 };
-export default Sidebar
+
+export default Sidebar;

@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,32 +6,26 @@
   :root {
     --background: 0 0% 6%;
     --foreground: 0 0% 100%;
-
+    --footer-background: 0 0% 4%;
     --card: 0 0% 10%;
     --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 10%;
+    --footer-foreground: 0 0% 95%;
+    --popover: 0 0% 10  ;
     --popover-foreground: 0 0% 100%;
-
+    --footer-muted: 0 0% 65%;
     --primary: 142 76% 50%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 0 0% 16%;
     --secondary-foreground: 0 0% 100%;
-
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 70%;
-
     --accent: 142 76% 50%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 142 76% 50%;
-
     --radius: 0.5rem;
   }
 }
@@ -45,7 +38,7 @@
   body {
     @apply bg-vndax-black text-foreground;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -55,23 +48,83 @@
   .btn-primary {
     @apply bg-vndax-green text-white px-5 py-2 rounded-md font-medium hover:bg-vndax-darkgreen transition-colors;
   }
-  
+
   .btn-secondary {
     @apply border border-vndax-green text-vndax-green px-5 py-2 rounded-md font-medium hover:bg-vndax-green/10 transition-colors;
   }
-  
+
   .section-title {
     @apply text-3xl font-bold mb-8;
   }
-  
+
   .container-custom {
     @apply px-4 md:px-8 lg:px-12 mx-auto max-w-7xl;
   }
-  
+
   .ticker-item {
     @apply flex items-center gap-4 px-6;
   }
+  .footer-bg {
+    background-color: hsl(var(--footer-background));
+  }
+
+  .footer-text {
+    color: hsl(var(--footer-foreground));
+  }
+
+  .footer-muted {
+    color: hsl(var(--footer-muted));
+  }
+
+  .footer-muted:hover {
+    color: hsl(var(--primary));
+  }
+  .dropdown-bg {
+    background-color: hsl(var(--card));
+  }
+
+  .dropdown-border {
+    border-color: hsl(var(--muted));
+  }
+
+  .dropdown-item {
+    @apply px-3 py-2 cursor-pointer rounded transition-colors;
+  }
+
+  .dropdown-item:hover {
+    background-color: hsl(var(--muted));
+  }
+
+  .dropdown-item-active {
+    @apply font-bold;
+    color: hsl(var(--primary));
+    background-color: hsl(var(--muted));
+  }
+
+  .dropdown-label {
+    @apply text-xs mb-1 text-muted-foreground;
+  }
+
+  .dropdown-search {
+    @apply w-full px-3 py-2 rounded bg-muted text-foreground focus:outline-none mb-2;
+  }
+
+  /* Blog-specific styles */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
+
 /* Thin custom scrollbar */
 .thin-scrollbar::-webkit-scrollbar {
   width: 6px;
@@ -91,22 +144,31 @@
   scrollbar-width: thin;
   scrollbar-color: #4b5563 transparent;
 }
-/* Thin custom scrollbar */
-.thin-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
 
-.thin-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
+@layer base {
+  [data-theme="light"] {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --primary: 142 76% 40%;
+    --qr: 0 0% 100%;
+    --visual-stroke: 0 0% 33.5%;
+    --footer-background: 0 0% 100%;
+    --footer-foreground: 0 0% 10%;
+    --footer-muted: 0 0% 40%;
+  }
 
-.thin-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #4b5563; /* gray-600 */
-  border-radius: 4px;
-}
-
-/* Firefox support */
-.thin-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #4b5563 transparent;
+  [data-theme="dark"] {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --primary: 142 76% 50%;
+    --qr: 0 0% 100%;
+    --visual-stroke: 0 0% 100%;
+    --footer-background: 0 0% 4%;
+    --footer-foreground: 0 0% 95%;
+    --footer-muted: 0 0% 65%;
+  }
 }

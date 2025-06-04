@@ -6,20 +6,19 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/context/LanguageContext";
+import { type TranslationKey, useLanguage } from "@/context/LanguageContext";
+
 type Article = {
   id: string;
-  titleKey: string;
-  contentKey: string;
+  titleKey: TranslationKey;
+  contentKey: TranslationKey;
 };
-
-// ***> Line 72 and 76 is working fine, ignore the error marking <***
 
 const Knowledge = () => {
   const [expandedArticle, setExpandedArticle] = useState<string | null>(null);
   const { t } = useLanguage();
 
-  const articles = [
+  const articles: Article[] = [
     {
       id: "article1",
       titleKey: "knowledgeArticle.article1.title",
@@ -44,15 +43,13 @@ const Knowledge = () => {
       id: "article5",
       titleKey: "knowledgeArticle.article5.title",
       contentKey: "knowledgeArticle.article5.content",
-    }
+    },
   ];
 
-
-
   return (
-      <section className="bg-black py-16" data-aos="fade-up" id="knowledge">
+      <section className="bg-[hsl(var(--background))] py-16" data-aos="fade-up" id="knowledge">
         <div className="container-custom">
-          <h2 className="section-title text-center text-white mb-12">
+          <h2 className="section-title text-center text-[hsl(var(--foreground))] mb-12">
             {t("knowledgeArticle.title")}
           </h2>
 
@@ -67,13 +64,15 @@ const Knowledge = () => {
                 <AccordionItem
                     key={article.id}
                     value={article.id}
-                    className="border-b border-vndax-lightgray"
+                    className="border-b border-[hsl(var(--muted-foreground))]/40"
                 >
-                  <AccordionTrigger className="py-6 text-left hover:text-vndax-green">
-                    <span className="text-lg font-medium">{t(article.titleKey)}</span>
+                  <AccordionTrigger className="py-6 text-left hover:text-[hsl(var(--primary))] transition-colors">
+                <span className="text-lg font-medium text-[hsl(var(--foreground))]">
+                  {t(article.titleKey)}
+                </span>
                   </AccordionTrigger>
 
-                  <AccordionContent className="py-4 text-gray-300">
+                  <AccordionContent className="py-4 text-[hsl(var(--muted-foreground))]">
                     <p className="mb-4">{t(article.contentKey)}</p>
                   </AccordionContent>
                 </AccordionItem>
@@ -83,7 +82,7 @@ const Knowledge = () => {
           <div className="flex justify-center mt-8">
             <Button
                 variant="outline"
-                className="border-vndax-green text-vndax-green hover:bg-vndax-green hover:text-white"
+                className="border-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))]"
             >
               {t("knowledgeArticle.viewAll")}
             </Button>
@@ -92,5 +91,5 @@ const Knowledge = () => {
       </section>
   );
 };
-// ***> Line 72 and 76 is working fine, ignore the error marking <***
+
 export default Knowledge;

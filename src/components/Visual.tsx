@@ -17,14 +17,14 @@ const CoinAnimation: React.FC = () => {
             <path
                 d="M 140,0 A 140,140 0 1,0 -140,0 A 140,140 0 1,0 140,0"
                 fill="none"
-                stroke="rgba(255, 255, 255)"
+                stroke="hsl(var(--visual-stroke))"
                 strokeWidth="5"
                 id="innerMotionPath"
             />
             <path
                 d="M 240,0 A 240,240 0 1,0 -240,0 A 240,240 0 1,0 240,0"
                 fill="none"
-                stroke="rgba(255, 255, 255)"
+                stroke="hsl(var(--visual-stroke))"
                 strokeWidth="5"
                 id="outerMotionPath"
             />
