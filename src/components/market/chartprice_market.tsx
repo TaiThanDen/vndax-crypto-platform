@@ -15,11 +15,7 @@ export default function CoinList() {
       }}
     >
       {coinData.map((coin) => (
-        <MiniCoinChart
-          key={coin.symbol}
-          data={coin.chart}
-          coinName={coin.symbol}
-        />
+        <MiniCoinChart key={coin.symbol} data={coin.chart} />
       ))}
     </div>
   );
