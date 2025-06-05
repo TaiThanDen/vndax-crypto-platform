@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/reusable-component/button.tsx";
 import { ShieldCheck, Lock, Activity } from 'lucide-react';
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../../../context/LanguageContext.tsx";
 
 const Security = () => {
   const { t } = useLanguage();

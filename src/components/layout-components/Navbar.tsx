@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useLanguage } from "../context/LanguageContext";
+import { Button } from "@/components/reusable-component/button.tsx";
+import { useLanguage } from "../../context/LanguageContext.tsx";
 import { MdLanguage } from "react-icons/md";
-import type { Language } from "@/i18n";
-import DarkModeButton from "@/components/DarkModeButton";
+import type { Language } from "@/i18n.ts";
+import DarkModeButton from "@/components/layout-components/DarkModeButton.tsx";
 
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: "en", label: "English" },
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
       <nav className="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] py-4 sticky top-0 z-50 shadow-md">
         <div className="container-custom flex justify-between items-center">
           <div className="flex items-center space-x-8">
-            <a href="/" className="text-[hsl(var(--primary))] font-bold text-2xl uppercase">
+            <a href="/public" className="text-[hsl(var(--primary))] font-bold text-2xl uppercase">
               VNDAX
             </a>
             <div className="hidden md:flex items-center space-x-8">{["home", "trading", "security", "knowledge", "support"].map((key) => (

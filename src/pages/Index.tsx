@@ -1,12 +1,12 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import MarketStats from '@/components/MarketStats';
-import Trading from '@/components/Trading';
-import Security from '@/components/Security';
-import Knowledge from '@/components/Knowledge';
-import Footer from '@/components/Footer';
+import Navbar from '@/components/layout-components/Navbar.tsx';
+import Hero from '@/components/inmutable-components/Index/Hero.tsx';
+import MarketStats from '@/components/inmutable-components/Index/MarketStats.tsx';
+import Trading from '@/components/inmutable-components/Index/Trading.tsx';
+import Security from '@/components/inmutable-components/Index/Security.tsx';
+import Knowledge from '@/components/inmutable-components/Index/Knowledge.tsx';
+import Footer from '@/components/layout-components/Footer.tsx';
 
 const Index = () => {
   return (

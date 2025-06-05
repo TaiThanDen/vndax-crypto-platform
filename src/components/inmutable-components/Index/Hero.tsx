@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/reusable-component/button.tsx";
+import { Input } from "@/components/reusable-component/input.tsx";
 import { ChevronRight } from 'lucide-react';
-import Visual from "@/components/Visual";
-import { useLanguage } from "@/context/LanguageContext";
+import Visual from "@/components/inmutable-components/Index/Visual.tsx";
+import { useLanguage } from "@/context/LanguageContext.tsx";
 
 const Hero = () => {
   const { t } = useLanguage();

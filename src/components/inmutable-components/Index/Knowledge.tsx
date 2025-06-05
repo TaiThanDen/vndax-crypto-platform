@@ -4,9 +4,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { type TranslationKey, useLanguage } from "@/context/LanguageContext";
+} from "@/components/reusable-component/accordion.tsx";
+import { Button } from "@/components/reusable-component/button.tsx";
+import { type TranslationKey, useLanguage } from "@/context/LanguageContext.tsx";
 
 type Article = {
   id: string;

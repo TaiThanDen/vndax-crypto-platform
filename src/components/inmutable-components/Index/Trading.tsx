@@ -1,6 +1,6 @@
 import React from "react";
-import { useLanguage } from "../context/LanguageContext";
-import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../../../context/LanguageContext.tsx";
+import { useTheme } from "../../../context/ThemeContext.tsx";
 
 const Trading = () => {
   const { t } = useLanguage();

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Sun, Moon } from 'lucide-react';
-import Theme from '@/context/ThemeContext';
+import Theme from '@/context/ThemeContext.tsx';
 
 const DarkModeButton = () => {
     const { theme, setTheme } = useContext(Theme);

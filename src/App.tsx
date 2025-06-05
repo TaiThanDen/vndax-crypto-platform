@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/reusable-component/toaster";
+import { Toaster as Sonner } from "@/components/reusable-component/sonner";
+import { TooltipProvider } from "@/components/reusable-component/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageProvider } from './context/LanguageContext';
 import Theme from './context/ThemeContext';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Document from "./pages/Document";
-import Blog from "@/components/ui/blog";
+import Document from "./pages/Document.tsx";
+import Blog from "@/components/reusable-component/blog";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BlogCard } from "@/components/ui/BlogCart";
+import { BlogCard } from "@/components/inmutable-components/Blog/BlogCart.tsx";
 
 interface BlogPageProps {
     onBlogClick: (blog: any) => void;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Sidebar from "@/components/Sidebar";
-import { BlogPage } from "@/components/ui/BlogPage";
-import Blog from "@/components/ui/blog";
+import Navbar from "@/components/layout-components/Navbar.tsx";
+import Footer from "@/components/layout-components/Footer.tsx";
+import Sidebar from "@/components/layout-components/Sidebar.tsx";
+import { BlogPage } from "@/components/inmutable-components/Blog/BlogPage.tsx";
+import Blog from "@/components/reusable-component/blog.tsx";
 
 const Document = () => {
     const [collapsed, setCollapsed] = useState(false);

@@ -1,4 +1,4 @@
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../../context/LanguageContext.tsx";
 import React from 'react';
 import { Facebook, Twitter, Youtube, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 
@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             {/* Column 1: Logo & Description */}
             <div>
-              <a href="/" className="text-primary font-bold text-2xl uppercase mb-5 inline-block">VNDAX</a>
+              <a href="/public" className="text-primary font-bold text-2xl uppercase mb-5 inline-block">VNDAX</a>
               <p className="footer-muted mb-6">{t('foot1')}</p>
               <div className="flex space-x-4">
                 {[Facebook, Twitter, Youtube, Instagram, Linkedin].map((Icon, i) => (

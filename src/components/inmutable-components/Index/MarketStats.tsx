@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/reusable-component/button.tsx";
 import { FaHandHoldingDollar, FaCoins } from "react-icons/fa6";
 import { GrTransaction } from "react-icons/gr";
 import { TrendingUp, TrendingDown } from 'lucide-react';
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../../../context/LanguageContext.tsx";
 
 const markets = [
   { name: 'Bitcoin', symbol: 'BTC/USDT', price: '$68,245.30', change: 2.45, icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1024px-Bitcoin.svg.png' },
