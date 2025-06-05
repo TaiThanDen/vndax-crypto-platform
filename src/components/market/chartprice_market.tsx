@@ -18,7 +18,6 @@ export default function CoinList() {
         <MiniCoinChart
           key={coin.symbol}
           data={coin.chart}
-          coinName={coin.symbol}
         />
       ))}
     </div>

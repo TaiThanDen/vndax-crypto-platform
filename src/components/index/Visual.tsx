@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils.ts";
 import image0 from "@/assets/car.png";
 import ada from "@/assets/ada.png";
 import eth from "@/assets/eth.png";
@@ -17,19 +17,19 @@ const CoinAnimation: React.FC = () => {
             <path
                 d="M 140,0 A 140,140 0 1,0 -140,0 A 140,140 0 1,0 140,0"
                 fill="none"
-                stroke="rgba(255, 255, 255)"
+                stroke="hsl(var(--visual-stroke))"
                 strokeWidth="5"
                 id="innerMotionPath"
             />
             <path
                 d="M 240,0 A 240,240 0 1,0 -240,0 A 240,240 0 1,0 240,0"
                 fill="none"
-                stroke="rgba(255, 255, 255)"
+                stroke="hsl(var(--visual-stroke))"
                 strokeWidth="5"
                 id="outerMotionPath"
             />
 
-            
+
 
             {/* Inner orbiting tokens (larger and evenly spaced) */}
             {/* {[eth, pinkCircle2, xrp, star].map((img, i) => (
@@ -228,7 +228,7 @@ const CoinAnimation: React.FC = () => {
                 >
                 </image>
             </g>
-            
+
             <rect x="-90" y="-90" width="180" height="180" fill="url(#patternCar)" />
             <defs>
                 <pattern id="patternCar" patternUnits="objectBoundingBox" width="1" height="1">

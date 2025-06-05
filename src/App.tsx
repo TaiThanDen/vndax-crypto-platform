@@ -1,50 +1,55 @@
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { LanguageProvider } from "./context/LanguageContext";
-import MainLayout from "@/components/layout/MainLayout";
-import Index from "@/pages/Index";
+import { LanguageProvider } from './context/LanguageContext';
+import Theme from './context/ThemeContext';
+import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Document from "./pages/Document";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react";
-import Market from "./pages/market";
-import Trade_spot from "./pages/Trade_spot";
+import Document from "./pages/Document.tsx";
+import Blog from "@/components/Blog/BlogDetail.tsx";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  const [theme, setTheme] = useState(
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+  );
+
   useEffect(() => {
-    AOS.init({
-      duration: 800, // animation duration in ms
-      once: true, // whether animation should happen only once
-      offset: 100, // how far from viewport the animation should trigger
-    });
-  }, []),
-  (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <Router>
-          <LanguageProvider>
-            <MainLayout>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/doc" element={<Document />} />
-                <Route path="/market" element={<Market />} />
-                <Route path="/trade_spot" element={<Trade_spot />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </MainLayout>
-          </LanguageProvider>
-        </Router>
-      </TooltipProvider>
-    </QueryClientProvider>
-  )
-);
+    AOS.init({ duration: 800, once: true, offset: 100 });
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  return (
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <LanguageProvider>
+              <Theme.Provider value={{ theme, setTheme }}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/doc" element={<Document />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Theme.Provider>
+            </LanguageProvider>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+  );
+};
 
 export default App;

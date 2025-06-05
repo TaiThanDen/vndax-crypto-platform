@@ -15,12 +15,12 @@ type DotNotationKeys<T, Prefix extends string = ""> =
         }[keyof T]
         : never;
 
-type TranslationKey = DotNotationKeys<TranslationObject>;
+export type TranslationKey = DotNotationKeys<TranslationObject>;
 
 interface LanguageContextType {
     lang: Language;
     setLang: (lang: Language) => void;
-    t: (key: TranslationKey) => string;
+    t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType>({
