@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import MiniCoinChart from "../MiniCoinChart";
-// import coinData from "../data/coindata"; // Xóa dòng này
 import {
   TokenBTC,
   TokenETH,
