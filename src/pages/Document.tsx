@@ -6,7 +6,7 @@ import BlogPage from "@/components/Blog/BlogPage.tsx";
 import Blog from "@/components/Blog/BlogDetail.tsx";
 
 const Document = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [selectedBlog, setSelectedBlog] = useState<any>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -20,7 +20,6 @@ const Document = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <Navbar />
       <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar: hidden on small, visible from md and up */}
 
@@ -35,7 +34,6 @@ const Document = () => {
         <div className="flex-1 px-4 py-6 sm:px-8 lg:px-10 pb-20 md:pb-6">
           {!selectedBlog ? (
             <BlogPage
-              onBlogClick={handleBlogClick}
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
             />
@@ -44,7 +42,6 @@ const Document = () => {
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

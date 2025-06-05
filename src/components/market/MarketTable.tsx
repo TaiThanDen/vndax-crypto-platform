@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MiniCoinChart from "../MiniCoinChart";
-// import coinData from "../data/coindata"; // Xóa dòng này
+import { Link } from "react-router-dom";
 import {
   TokenBTC,
   TokenETH,
@@ -280,12 +280,14 @@ export default function MarketTable() {
                     </td>
                     {/* Action: desktop only */}
                     <td className="py-2 px-3 text-center align-middle hidden md:table-cell">
-                      <button className="text-vndax-green font-semibold hover:underline mr-2">
-                        Details
-                      </button>
-                      <button className="text-white font-semibold hover:underline">
-                        Trade
-                      </button>
+                      <Link to="/trade_spot">
+                        <button className="text-vndax-green font-semibold hover:underline mr-2">
+                          Details
+                        </button>
+                        <button className="text-white font-semibold hover:underline">
+                          Trade
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 );

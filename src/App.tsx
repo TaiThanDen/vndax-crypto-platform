@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { LanguageProvider } from './context/LanguageContext';
-import Theme from './context/ThemeContext';
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import Document from "./pages/Document.tsx";
-import Blog from "@/components/Blog/BlogDetail.tsx";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { LanguageProvider } from "./context/LanguageContext";
+import Theme from "./context/ThemeContext";
+import AppRoutes from "./routes";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import ScrollToTop from "@/components/ScrollToTop.tsx";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [theme, setTheme] = useState(
-      localStorage.getItem("theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+    localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light")
   );
 
   useEffect(() => {
@@ -31,24 +31,20 @@ const App = () => {
   }, [theme]);
 
   return (
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <LanguageProvider>
-              <Theme.Provider value={{ theme, setTheme }}>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/doc" element={<Document />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Theme.Provider>
-            </LanguageProvider>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <LanguageProvider>
+            <Theme.Provider value={{ theme, setTheme }}>
+              <AppRoutes />
+            </Theme.Provider>
+          </LanguageProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 };
 
