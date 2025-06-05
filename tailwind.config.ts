@@ -105,7 +105,13 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'marquee': 'marquee 25s linear infinite'
-			}
+			},
+			gridTemplateColumns: {
+				'Responsive': 'repeat(4, minmax(0, 1fr))',
+				'Responsive-sm': 'repeat(1, minmax(0, 1fr))',// 1 column by default
+				'Responsive-md': 'repeat(2, minmax(0, 1fr))', // 2 cols for md
+				'Responsive-lg': 'repeat(4, minmax(0, 1fr))', // 3 cols for lg
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate"),  require('tailwind-scrollbar-hide')],

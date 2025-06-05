@@ -9,7 +9,7 @@ import Theme from './context/ThemeContext';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Document from "./pages/Document.tsx";
-import Blog from "@/components/reusable-component/blog";
+import Blog from "@/components/inmutable-components/Blog/BlogDetail.tsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

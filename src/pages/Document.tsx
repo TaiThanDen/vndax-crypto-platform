@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Navbar from "@/components/layout-components/Navbar.tsx";
 import Footer from "@/components/layout-components/Footer.tsx";
 import Sidebar from "@/components/layout-components/Sidebar.tsx";
-import { BlogPage } from "@/components/inmutable-components/Blog/BlogPage.tsx";
-import Blog from "@/components/reusable-component/blog.tsx";
+import  BlogPage  from "@/components/inmutable-components/Blog/BlogPage.tsx";
+import Blog from "@/components/inmutable-components/Blog/BlogDetail.tsx";
 
 const Document = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -25,10 +25,9 @@ const Document = () => {
                 {/* Sidebar: hidden on small, visible from md and up */}
 
                     <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
-đ
 
                 {/* Main content area */}
-                <div className="flex-1 px-4 py-6 sm:px-8 lg:px-12 pb-20 md:pb-6">
+                <div className="flex-1 px-4 py-6 sm:px-8 lg:px-10 pb-20 md:pb-6">
                     {!selectedBlog ? (
                         <BlogPage
                             onBlogClick={handleBlogClick}
