@@ -21,7 +21,8 @@ const blogData: BlogContent = {
     "Live Trading Trên VNDAX — Trải nghiệm Ngay Trong Các Buổi Livestream Về Crypto",
   authorInfo: "VNDAX Team",
   postdate: "01/06/2025",
-  imageUrl: "https://i.imgur.com/XBEKUJK.jpg",
+  imageUrl:
+    "https://4kwallpapers.com/images/wallpapers/astronaut-bitcoin-ethereum-cryptocurrency-planet-earth-2048x2048-8247.jpg",
   imageAlt: "Livestream trading feature showcase",
   footer:
     "Cảnh Báo Rủi Ro: Giá tiền mã hóa có thể biến động mạnh và rủi ro cao. ... VNDAX không chịu trách nhiệm cho bất kỳ tổn thất nào. Vui lòng tham khảo Điều khoản Sử dụng và Cảnh báo Rủi ro để biết thêm chi tiết.",
@@ -58,7 +59,7 @@ const BlogPage: React.FC<BlogProps> = ({ blog, onBack }) => {
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row bg-[hsl(var(--background))] duration-300 text-left">
+    <div className="flex flex-col lg:flex-row bg-[hsl(var(--background))] duration-300 text-left px-3">
       {/* Main Content */}
       <main className="flex-1 max-w-4xl mx-auto text-xl text-left sm:text-xs md:text-xl leading-7 bg-[hsl(var(--background))] text-[hsl(var(--foreground))] duration-300">
         {/* Header Section */}
@@ -73,19 +74,19 @@ const BlogPage: React.FC<BlogProps> = ({ blog, onBack }) => {
                 Quay lại
               </Link>
             </div>
-            <h1 className=" sm:text-xl md:text-3xl  font-bold m:mb-1">
+            <h1 className=" sm:text-xl md:text-3xl mb-2 font-bold m:mb-1">
               {blog.title}
             </h1>
-            <div className="text-[hsl(var(--muted-foreground))] mb-0 text-xs md:text-sm  space-x-3">
+            <div className="text-[hsl(var(--muted-foreground))] mb-0 text-xs md:text-sm mb-2 space-x-3">
               <span>{blog.authorInfo}</span>
-              <span className="text-2xl">-</span>
+              <span>-</span>
               <span>{blog.postdate}</span>
             </div>
           </div>
         </section>
 
         {/* Main Points */}
-        <section id="mainpoints" className="mx-4 pb-10">
+        <section id="mainpoints" className="mx-4 pb-4">
           <h1 className="text-lg md:text-xl font-semibold mb-3">Điểm chính:</h1>
           <ul className="list-disc pl-6 space-y-2 text-base font-semilight text-foreground">
             <li>
@@ -102,18 +103,18 @@ const BlogPage: React.FC<BlogProps> = ({ blog, onBack }) => {
         </section>
 
         {/* Image Section */}
-        <section className="max-w-4xl mx-auto px-4 mt-6" id="mainpoints">
+        <section className="max-w-4xl mx-auto px-4 " id="mainpoints">
           <img
             src={blog.imageUrl}
             alt={blog.imageAlt}
-            className="w-full h-auto rounded-md shadow"
+            className="w-full h-auto object-cover rounded-md shadow mx-auto"
           />
         </section>
 
         {/* Content Section */}
         <section
           id="usercanwatch"
-          className="bg-background mt-8 space-y-5 text-base leading-relaxed text-foreground"
+          className="bg-background mt-4 space-y-5 text-base leading-relaxed text-foreground"
         >
           <p>
             Điều gì sẽ xảy ra nếu bạn có thể xem một trader phân tích chiến lược

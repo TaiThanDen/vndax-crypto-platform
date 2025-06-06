@@ -45,22 +45,13 @@ const MiniCoinChart: React.FC<MiniCoinChartProps> = ({
         width,
         height,
         borderRadius: 10,
-        color: "#fff",
+        color: "var(--foreground)",
+        background: "var(--card)",
         padding: 0,
         margin: 0,
         overflow: "hidden",
       }}
     >
-      {/* {coinName && ( */}
-      <div
-        style={{
-          marginBottom: 8,
-          fontWeight: "bold",
-          color: "#f1c40f",
-        }}
-      >
-        {/* {coinName} */}
-      </div>
       <ReactApexChart
         options={options}
         series={series}

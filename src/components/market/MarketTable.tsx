@@ -134,16 +134,15 @@ export default function MarketTable() {
   const pagedData = coinData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-start bg-[#151517 ] px-2 md:px-0">
+    <div className="w-full min-h-screen flex justify-center items-start bg-[hsl(var(--background))] px-2 md:px-0">
       <div className="w-full max-w-6xl">
-        <h1 className="text-white text-2xl md:text-3xl font-semibold mb-6">
+        <h1 className="text-[hsl(var(--foreground))] text-2xl md:text-3xl font-semibold mb-6">
           Market Overview
         </h1>
         <MarketOverview />
 
         {/* Tabs + Search Row */}
-        <div className="flex items-center gap-4 mb-4 border-b border-[#23262F]">
-          {/* Tabs: chiếm 2/3 */}
+        <div className="flex items-center gap-4 mb-4 border-b border-[hsl(var(--border))]">
           <div className="flex gap-6 w-2/3">
             {TABS.map((tab) => (
               <button
@@ -151,7 +150,7 @@ export default function MarketTable() {
                 className={`py-2 font-semibold transition-colors ${
                   activeTab === tab.key
                     ? "text-green-500 text-2xl border-b-2 border-green-500"
-                    : "text-white text-base"
+                    : "text-[hsl(var(--foreground))] text-base"
                 }`}
                 style={{ outline: "none", background: "none", border: "none" }}
                 onClick={() => setActiveTab(tab.key)}
@@ -160,14 +159,13 @@ export default function MarketTable() {
               </button>
             ))}
           </div>
-          {/* Search: chiếm 1/3 */}
           <div className="w-1/3 max-w-sm ml-auto">
             <div className="relative flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="#fff"
-                className="absolute w-5 h-5 top-2.5 left-2.5 text-slate-600"
+                fill="currentColor"
+                className="absolute w-5 h-5 top-2.5 left-2.5 text-[hsl(var(--muted-foreground))]"
               >
                 <path
                   fillRule="evenodd"
@@ -175,20 +173,20 @@ export default function MarketTable() {
                   clipRule="evenodd"
                 />
               </svg>
-
               <input
-                className="w-full bg-transparent rounded-full placeholder:text-slate-400 text-white text-sm border border-slate-200 pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                className="w-full bg-transparent rounded-full placeholder:text-[hsl(var(--muted-foreground))] text-[hsl(var(--foreground))] text-sm border border-[hsl(var(--border))] pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-[hsl(var(--border))] hover:border-[hsl(var(--border))] shadow-sm focus:shadow"
                 placeholder="Search coin"
               />
             </div>
           </div>
         </div>
-        {/* End Tabs */}
-
-        {/* Table market */}
-        <table className="w-full bg-[#181A20] text-white rounded-xl overflow-hidden">
+        {/* Table */}
+        <table
+          className="w-full rounded-xl overflow-hidden text-[hsl(var(--foreground))]"
+          style={{ background: "var(--table-bg)" }}
+        >
           <thead>
-            <tr className="text-gray-400 text-xs md:text-sm border-b border-[#23262F]">
+            <tr className="text-[hsl(var(--muted-foreground))] text-xs md:text-sm border-b border-[hsl(var(--border))]">
               <th className="py-3 px-3 text-left font-medium">Name</th>
               <th className="py-3 px-3 text-right font-medium">Last price</th>
               <th className="py-3 px-3 text-right font-medium hidden sm:table-cell">
@@ -216,7 +214,14 @@ export default function MarketTable() {
                 return (
                   <tr
                     key={coin.symbol}
-                    className="border-b border-[#23262F] hover:bg-[#23262F] transition text-xs md:text-sm"
+                    className="border-b border-[hsl(var(--border))] transition text-xs md:text-sm"
+                    style={{ cursor: "pointer" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background = "var(--table-hover)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background = "var(--table-bg)")
+                    }
                   >
                     {/* Name */}
                     <td className="py-2 px-3 font-semibold align-middle">
@@ -228,7 +233,7 @@ export default function MarketTable() {
                         )}
                         <span className="ml-2 flex flex-col leading-tight ">
                           <span>{coin.symbol}</span>
-                          <span className="text-[10px] text-gray-400 text-sm">
+                          <span className="text-[10px] text-[hsl(var(--muted-foreground))] text-sm">
                             {coin.name}
                           </span>
                         </span>
@@ -237,7 +242,6 @@ export default function MarketTable() {
                     {/* Last price */}
                     <td className="py-2 px-3 text-right align-middle whitespace-nowrap">
                       {coin.price.toLocaleString()}
-                      {/* Mobile: Show % change dưới last price */}
                       <div
                         className={`mt-1 text-[11px] ${
                           coin.change < 0 ? "text-red-500" : "text-green-500"
@@ -284,7 +288,7 @@ export default function MarketTable() {
                         <button className="text-vndax-green font-semibold hover:underline mr-2">
                           Details
                         </button>
-                        <button className="text-white font-semibold hover:underline">
+                        <button className="text-[hsl(var(--foreground))] font-semibold hover:underline">
                           Trade
                         </button>
                       </Link>
@@ -295,38 +299,67 @@ export default function MarketTable() {
             )}
           </tbody>
         </table>
-
         {/* Pagination */}
-        <div className="flex justify-end items-end gap-2 mt-6">
+        <div className="flex justify-end items-end gap-2 mt-6 mb-3 flex-wrap">
           <button
-            className="px-3 py-1 rounded bg-[#23262F] text-white disabled:opacity-50"
+            className="md:px-3 md:py-1 px-2 py-1 text-sm md:text-base rounded bg-[hsl(var(--card))] text-[hsl(var(--foreground))] disabled:opacity-50 hover:bg-green-500 hover:text-white transition"
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
           >
             &lt;
           </button>
-          {Array.from({ length: totalPage }, (_, i) => (
-            <button
-              key={i}
-              className={`px-3 py-1 rounded-full  ${
-                page === i + 1
-                  ? "bg-green-500 text-white"
-                  : "bg-[#23262F] text-white"
-              }`}
-              onClick={() => setPage(i + 1)}
-            >
-              {i + 1}
-            </button>
-          ))}
+          {Array.from({ length: totalPage }, (_, i) => {
+            // Ẩn bớt số trang trên mobile
+            const isMobile = window.innerWidth < 640;
+            let show = true;
+            if (isMobile && totalPage > 6) {
+              // Luôn hiện trang đầu, cuối, trang hiện tại, và 1 trang trước/sau
+              if (
+                i !== 0 &&
+                i !== totalPage - 1 &&
+                Math.abs(i + 1 - page) > 1
+              ) {
+                show = false;
+              }
+            }
+            // Hiện dấu ...
+            if (
+              isMobile &&
+              totalPage > 6 &&
+              ((i === 1 && page > 4) ||
+                (i === totalPage - 2 && page < totalPage - 3))
+            ) {
+              return (
+                <span key={i} className="px-2 py-1 text-gray-400 select-none">
+                  ...
+                </span>
+              );
+            }
+            if (!show) return null;
+            return (
+              <button
+                key={i}
+                className={`md:px-3 md:py-1 px-2 py-1 text-sm md:text-base rounded-full transition-colors duration-200
+          ${
+            page === i + 1
+              ? "bg-green-500 text-white"
+              : "bg-[hsl(var(--card))] text-[hsl(var(--foreground))] hover:bg-green-500 hover:text-white"
+          }
+        `}
+                onClick={() => setPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
           <button
-            className="px-3 py-1 rounded bg-[#23262F] text-white disabled:opacity-50"
+            className="px-3 py-1 md:px-3 md:py-1 px-2 py-1 text-sm md:text-base rounded bg-[hsl(var(--card))] text-[hsl(var(--foreground))] disabled:opacity-50 hover:bg-green-500 hover:text-white transition"
             onClick={() => setPage((p) => Math.min(totalPage, p + 1))}
             disabled={page === totalPage}
           >
             &gt;
           </button>
         </div>
-        {/* End Pagination */}
       </div>
     </div>
   );

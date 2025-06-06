@@ -218,9 +218,9 @@ const BlogPage: React.FC<BlogPageProps> = ({
 
       <div
         ref={scrollRef}
-        className={`mb-10 pb-1 flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide transition-all duration-300 ${
+        className={`mb-10 pb-1 gap-2 overflow-x-auto scroll-smooth scrollbar-hide transition-all duration-300 ${
           isWideEnough ? "justify-center flex-wrap" : "flex-nowrap"
-        }`}
+        } hidden md:flex`}
       >
         {["All", ...categories].map((cat) => {
           const isSelected = selectedCategory === (cat === "All" ? null : cat);

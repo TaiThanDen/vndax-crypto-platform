@@ -178,7 +178,10 @@ const Navbar: React.FC = () => {
               <X size={24} />
             </button>
           </div>
-
+          {/* Dark mode button for mobile */}
+          <div className="flex justify-center mt-2">
+            <DarkModeButton />
+          </div>
           {/* Login/Register top section */}
           <div className="flex flex-col space-y-2 border-b border-[hsl(var(--border))] pb-4">
             <Button
@@ -211,14 +214,14 @@ const Navbar: React.FC = () => {
           >
             {t("trading")}
           </Link>
-          <Link
+          {/* <Link
             to="#security"
             className="text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors"
           >
-            {t("security")}
-          </Link>
+            {t("security")} 
+          </Link> */}
           <Link
-            to="#knowledge"
+            to="/doc"
             className="text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors"
           >
             {t("knowledge")}
@@ -229,11 +232,6 @@ const Navbar: React.FC = () => {
           >
             {t("support")}
           </Link>
-
-          {/* Dark mode button for mobile */}
-          <div className="flex justify-center mt-2">
-            <DarkModeButton />
-          </div>
 
           {/* Language selector */}
           <Button

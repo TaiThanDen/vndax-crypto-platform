@@ -9,7 +9,7 @@ export default function CoinList() {
         display: "flex",
         flexWrap: "wrap",
         gap: 24,
-        background: "#181A20",
+        background: "var(--background)",
         minHeight: "100vh",
         padding: 40,
       }}

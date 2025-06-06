@@ -3,11 +3,11 @@ import {
   TokenBTC,
   TokenETH,
   TokenSOL,
-  TokenSOPH,
+  TokenJOE,
   TokenHMND,
   TokenDOLA,
   TokenLPT,
-  TokenDEXE,
+  TokenDGB,
   TokenPART,
 } from "@web3icons/react";
 
@@ -17,11 +17,11 @@ const tokenIcons: Record<string, React.ElementType> = {
   BTC: TokenBTC,
   ETH: TokenETH,
   SOL: TokenSOL,
-  SOPH: TokenSOPH,
+  JOE: TokenJOE,
   HMND: TokenHMND,
   DOLA: TokenDOLA,
   LPT: TokenLPT,
-  DEXE: TokenDEXE,
+  DGB: TokenDGB,
   PART: TokenPART,
 };
 
@@ -38,7 +38,7 @@ const marketData = [
   {
     title: "Niêm yết mới",
     coins: [
-      { symbol: "SOPH", price: "$0.05309", change: -18.08 },
+      { symbol: "JOE", price: "$0.05309", change: -18.08 },
       { symbol: "HMND", price: "$0.04564", change: -16.79 },
       { symbol: "DOLA", price: "$0.9999", change: -0.04 },
     ],
@@ -47,7 +47,7 @@ const marketData = [
     title: "Top coin tăng giá",
     coins: [
       { symbol: "LPT", price: "$7.44", change: 33.73 },
-      { symbol: "DEXE", price: "$14.06", change: 12.92 },
+      { symbol: "DGB", price: "$14.06", change: 12.92 },
       { symbol: "PART", price: "$0.2787", change: 11.39 },
     ],
   },
@@ -63,13 +63,16 @@ const marketData = [
 
 export default function MarketOverview() {
   return (
-    <div className="w-full mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div className="w-full mb-6 grid grid-cols-1 md:grid-cols-4 gap-4 px-2">
       {marketData.map((section) => (
         <div
           key={section.title}
-          className="bg-[#181A20] rounded-xl p-4 flex flex-col gap-2 border-spacing-2 border border-[#2b3139]"
+          className=" rounded-xl p-4 flex flex-col gap-2 border border-[hsl(var(--border))]"
+          style={{ background: "var(--table-bg)" }}
         >
-          <span className="text-gray-400 text-xs mb-2">{section.title}</span>
+          <span className="text-[hsl(var(--muted-foreground))] text-xs mb-2">
+            {section.title}
+          </span>
           {section.coins.map((coin, idx) => {
             const Icon = tokenIcons[coin.symbol];
             return (
@@ -81,9 +84,13 @@ export default function MarketOverview() {
               >
                 <span className="flex items-center gap-2">
                   <Icon className="w-5 h-5" />
-                  <span className="font-semibold">{coin.symbol}</span>
+                  <span className="font-semibold text-[hsl(var(--foreground))]">
+                    {coin.symbol}
+                  </span>
                 </span>
-                <span className="text-sm">{coin.price}</span>
+                <span className="text-sm text-[hsl(var(--foreground))] md:hidden lg:inline">
+                  {coin.price}
+                </span>
                 <span
                   className={`text-sm ${
                     coin.change > 0 ? "text-green-500" : "text-red-500"
